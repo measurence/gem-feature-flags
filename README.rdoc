@@ -1,0 +1,7 @@
+= Feature Flags Gem
+
+A simple, opinionated library that adds feature flags to a user model.
+
+= License
+
+This project rocks and uses MIT-LICENSE.
