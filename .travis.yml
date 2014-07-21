@@ -1,0 +1,9 @@
+language: ruby
+install:
+  - time gem install bundler
+  - time bundle install
+script:
+  - time bundle exec rake test
+rvm:
+  - 1.9.3
+  - 2.1.2
