@@ -3,7 +3,7 @@ install:
   - time gem install bundler
   - time bundle install
 script:
-  - ./test/dummy/bin/rake db:migrate
-  - bundle exec rake test
+  - cd test/dummy && ./bin/rake db:migrate
+  - cd ../.. && bundle exec rake test
 rvm:
   - 2.1.2
