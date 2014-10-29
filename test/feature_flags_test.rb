@@ -32,18 +32,18 @@ class FeatureFlagsTest < ActiveSupport::TestCase
   end
 
   test "flags can be disabled" do
-    user = User.create(name: "myuser", features: { awesome_feature: true })
+    user = User.create(name: "myuser", features: { "awesome_feature" => true })
     user.disable_feature!(:awesome_feature)
     assert !user.feature_enabled?(:awesome_feature)
   end
 
   test "flags can be stored in a custom field" do
-    user = AltUser.create(name: "myuser", flags: { awesome_feature: true })
+    user = AltUser.create(name: "myuser", flags: { "awesome_feature" => true })
     assert user.awesome_feature_enabled?
   end
 
   test "all flags can be enabled with a master feature" do
-    user = AltUser.create(name: "myuser", flags: { awesome_feature: false })
+    user = AltUser.create(name: "myuser", flags: { "awesome_feature" => false })
     assert !user.master_feature_enabled?
     assert !user.awesome_feature_enabled?
     user.enable_master_feature!
