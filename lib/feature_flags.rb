@@ -22,8 +22,10 @@ module FeatureFlags
       define_method "set_feature_status!" do |feature, status|
         raise "feature status must be a boolean" unless status.is_a?(TrueClass) || status.is_a?(FalseClass)
         send("#{features_field}=", {}) unless send(features_field).is_a?(Hash)
-        (features.include?(feature) || feature == master_feature) &&
-        send(features_field)[feature.to_s] = status
+        if features.include?(feature) || feature == master_feature
+          send("#{features_field.to_s}_will_change!")
+          send(features_field)[feature.to_s] = status
+        end
       end
 
       define_method "get_feature_status" do |feature|
